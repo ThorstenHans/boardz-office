@@ -1,34 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
 <OfficeApp
         xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
         xsi:type="MailApp">
 
-  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
-
-  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
   <Id>3d9a4d54-d93a-40d7-a9d1-98e2d4b60971</Id>
-
-  <!--Version. Updates from the store only get triggered if there is a version change. -->
   <Version>1.0.0.0</Version>
   <ProviderName>Thinktecture AG</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
-  <DisplayName DefaultValue="BoardZ" />
+  <DisplayName DefaultValue="boardZ" />
   <Description DefaultValue="Access your board games from within Outlook"/>
-  <IconUrl DefaultValue="https://boardz-app.azurewebsites.net/Images/tt64.png"/>
-
-  <SupportUrl DefaultValue="http://thinktecture.com" />
-  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+  <IconUrl DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt32.png" />
+	<HighResolutionIconUrl DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt64.png" />
+	<SupportUrl DefaultValue="http://thinktecture.com" />
+ 
   <AppDomains>
     <AppDomain>https://boardz-app.azurewebsites.net</AppDomain>
     <AppDomain>https://boardz-api.azurewebsites.net</AppDomain>
     <AppDomain>https://boardz-id.azurewebsites.net</AppDomain>
   </AppDomains>
-  <!--End Basic Settings. -->
-  
   <Hosts>
     <Host Name="Mailbox" />
   </Hosts>
@@ -45,7 +36,6 @@
       </DesktopSettings>
     </Form>
   </FormSettings>
-
   <Permissions>ReadItem</Permissions>
   <Rule xsi:type="RuleCollection" Mode="And">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
@@ -62,17 +52,11 @@
       <Host xsi:type="MailHost">
         
         <DesktopFormFactor>
-          <!-- Location of the Functions that UI-less buttons can trigger (ExecuteFunction Actions). -->
           <FunctionFile resid="functionFile" />
-          <!-- Message Read -->
-          
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
-            <!-- Use the default tab of the ExtensionPoint or create your own with <CustomTab id="myTab"> -->
             <OfficeTab id="TabDefault">
-              <!-- Up to 6 Groups added per Tab -->
               <Group id="msgReadGroup">
                 <Label resid="groupLabel" />
-                <!-- Launch the add-in : task pane button -->
                 <Control xsi:type="Button" id="msgReadOpenPaneButton">
                   <Label resid="paneReadButtonLabel" />
                   <Supertip>
@@ -80,41 +64,47 @@
                     <Description resid="paneReadSuperTipDescription" />
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="icon16" />
-                    <bt:Image size="32" resid="icon32" />
-                    <bt:Image size="80" resid="icon80" />
+                    <bt:Image size="16" resid="Boardz.Icon16" />
+									  <bt:Image size="32" resid="Boardz.Icon32" />
+									  <bt:Image size="40" resid="Boardz.Icon40" />
+									  <bt:Image size="48" resid="Boardz.Icon48" />
+									  <bt:Image size="64" resid="Boardz.Icon64" />
+									  <bt:Image size="80" resid="Boardz.Icon80" />  
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
                     <SourceLocation resid="messageReadTaskPaneUrl" />
                   </Action>
                 </Control>
-                <!-- Go to http://aka.ms/ButtonCommands to learn how to add more Controls: ExecuteFunction and Menu -->
               </Group>
             </OfficeTab>
           </ExtensionPoint>
-          <!-- Go to http://aka.ms/ExtensionPointsCommands to learn how to add more Extension Points: MessageRead, AppointmentOrganizer, AppointmentAttendee -->
         </DesktopFormFactor>
       </Host>
     </Hosts>
 
     <Resources>
       <bt:Images>
-        <bt:Image id="icon16" DefaultValue="https://boardz-app.azurewebsites.net/Images/tt16.png"/>
-        <bt:Image id="icon32" DefaultValue="https://boardz-app.azurewebsites.net/Images/tt32.png"/>
-        <bt:Image id="icon80" DefaultValue="https://boardz-app.azurewebsites.net/Images/tt80.png"/>
+        <bt:Image id="Boardz.Icon16" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt16.png" />
+				<bt:Image id="Boardz.Icon20" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt20.png" />
+				<bt:Image id="Boardz.Icon24" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt24.png" />
+				<bt:Image id="Boardz.Icon32" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt32.png" />
+				<bt:Image id="Boardz.Icon40" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt40.png" />
+				<bt:Image id="Boardz.Icon48" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt48.png" />
+				<bt:Image id="Boardz.Icon64" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt64.png" />
+				<bt:Image id="Boardz.Icon80" DefaultValue="https://boardz-app.azurewebsites.net/assets/images/tt80.png" />
       </bt:Images>
       <bt:Urls>
         <bt:Url id="functionFile" DefaultValue="https://boardz-app.azurewebsites.net/functions.html"/>
         <bt:Url id="messageReadTaskPaneUrl" DefaultValue="https://boardz-app.azurewebsites.net/index.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="groupLabel" DefaultValue="BoardZ"/>
-        <bt:String id="customTabLabel"  DefaultValue="BoardZ"/>
-        <bt:String id="paneReadButtonLabel" DefaultValue="BoardZ"/>
-        <bt:String id="paneReadSuperTipTitle" DefaultValue="Board Games with BoardZ"/>
+        <bt:String id="groupLabel" DefaultValue="boardZ"/>
+        <bt:String id="customTabLabel"  DefaultValue="boardZ"/>
+        <bt:String id="paneReadButtonLabel" DefaultValue="boardZ"/>
+        <bt:String id="paneReadSuperTipTitle" DefaultValue="Board Games with boardZ"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="paneReadSuperTipDescription" DefaultValue="Board Games with BoardZ"/>
+        <bt:String id="paneReadSuperTipDescription" DefaultValue="Board Games with boardZ"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
